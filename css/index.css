@@ -1,0 +1,28 @@
+:root {
+  /* Font */
+  --font-en: "Cormorant Garamond", serif;
+  --font-serif: "Noto Serif JP", serif;
+  --font-sans: "Noto Sans JP", sans-serif;
+
+  /* Color */
+  --color-primary: #babcdc;
+  --color-accent: #d98282;
+  --color-base: #f7f4ec;
+  --color-text: #33322f;
+}
+body {
+  background: var(--color-base);
+  font-family: var(--font-sans);
+  color: var(--color-text);
+}
+
+.hero__title,
+.workshop-card__number {
+  font-family: var(--font-en);
+}
+
+.section-title,
+.about__title,
+.pickup__title {
+  font-family: var(--font-serif);
+}
