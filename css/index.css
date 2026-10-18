@@ -1,0 +1,831 @@
+/* =========================
+   01. Header
+========================= */
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--z-menu);
+  background-color: rgb(247 244 236 / 90%);
+  backdrop-filter: blur(8px);
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(calc(100% - var(--content-padding) * 2), var(--content-xl));
+  min-height: 8rem;
+  margin-inline: auto;
+}
+
+.headerLogo {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  line-height: var(--lh-none);
+}
+
+.headerLogoMain {
+  font-size: 3.2rem;
+  font-family: var(--ff-en);
+  line-height: 0.8;
+}
+
+.headerLogoSub {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+}
+
+.headerNavList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.headerNavList a {
+  position: relative;
+  font-size: var(--fs-sm);
+  font-family: var(--ff-en);
+  letter-spacing: 0.08em;
+}
+
+.headerNavList a::after {
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  transform: scaleX(0);
+  height: 1px;
+  background-color: currentcolor;
+  transition: transform var(--transition-base);
+  transform-origin: right;
+  content: "";
+}
+
+.headerNavList a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.headerMenuBtn {
+  display: none;
+}
+
+/* =========================
+   02. Drawer
+========================= */
+.drawer {
+  display: grid;
+  position: fixed;
+  z-index: var(--z-overlay);
+  background-color: var(--color-bg-brand);
+  opacity: 0;
+  transition:
+    opacity var(--transition-base),
+    visibility var(--transition-base);
+  inset: 0;
+  place-items: center;
+  visibility: hidden;
+}
+
+.drawer.isOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawerNavList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.drawerNavList a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  font-size: var(--fs-lg);
+  font-family: var(--ff-en);
+}
+
+.drawerNavList span {
+  font-size: var(--fs-sm);
+}
+
+/* =========================
+   03. Hero
+========================= */
+.hero {
+  min-height: 100svh;
+  padding-top: 8rem;
+}
+
+.heroInner {
+  display: grid;
+  position: relative;
+  align-items: center;
+  width: min(calc(100% - var(--content-padding) * 2), var(--content-xl));
+  min-height: calc(100svh - 8rem);
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+
+.heroContent {
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.heroLead {
+  margin-bottom: var(--space-md);
+  font-size: var(--fs-md);
+  font-family: var(--ff-serif);
+}
+
+.heroTitle {
+  font-size: var(--fs-display);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+}
+
+.heroText {
+  margin-top: var(--space-xl);
+  line-height: var(--lh-relaxed);
+}
+
+.hero .btn {
+  margin-top: var(--space-xl);
+}
+
+.heroVisual {
+  position: relative;
+  border-radius: 48% 52% 42% 58% / 58% 45% 55% 42%;
+  background-color: var(--color-bg-brand);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.heroVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   04. About
+========================= */
+.aboutInner {
+  display: grid;
+  align-items: center;
+  gap: clamp(4rem, 8vw, 12rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sectionLabel {
+  margin-bottom: var(--space-md);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+}
+
+.aboutTitle,
+.sectionTitle,
+.pickupTitle,
+.accessTitle {
+  font-size: var(--fs-xl);
+  line-height: 1.45;
+}
+
+.aboutText {
+  margin-top: var(--space-xl);
+  line-height: var(--lh-relaxed);
+}
+
+.about .textLink {
+  margin-top: var(--space-xl);
+}
+
+.aboutVisual {
+  border-radius: 52% 48% 55% 45% / 44% 56% 44% 56%;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.aboutVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   05. Workshop
+========================= */
+.workshop {
+  position: relative;
+  background-color: var(--color-bg-brand);
+  overflow: hidden;
+}
+
+.workshopHeading {
+  max-width: 70rem;
+  margin-bottom: var(--space-3xl);
+}
+
+.workshopIntro {
+  margin-top: var(--space-lg);
+  line-height: var(--lh-relaxed);
+}
+
+.workshopList {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.workshopCard {
+  display: grid;
+  min-height: 28rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg-default);
+  overflow: hidden;
+  grid-template-columns: minmax(24rem, 0.8fr) minmax(0, 1.2fr);
+}
+
+.workshopCardImg {
+  overflow: hidden;
+}
+
+.workshopCardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.workshopCardContent {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.4rem, 4vw, 5.6rem);
+}
+
+.workshopCardNumber {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-xl);
+  font-size: var(--fs-xxl);
+  line-height: var(--lh-none);
+  color: var(--color-accent);
+}
+
+.workshopCardTitle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-right: 8rem;
+  font-size: var(--fs-md);
+  font-family: var(--ff-serif);
+  line-height: 1.5;
+}
+
+.workshopCardTitle span {
+  font-size: var(--fs-sm);
+  font-family: var(--ff-en);
+  letter-spacing: 0.1em;
+}
+
+.workshopCardText {
+  margin-top: var(--space-lg);
+  line-height: var(--lh-relaxed);
+}
+
+.workshopCardMeta {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  font-size: var(--fs-sm);
+  font-family: var(--ff-en);
+}
+
+.workshopCardMeta li + li::before {
+  margin-right: var(--space-md);
+  content: "/";
+}
+
+.workshopCardLink {
+  display: grid;
+  position: absolute;
+  right: var(--space-xl);
+  bottom: var(--space-xl);
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 1px solid currentcolor;
+  border-radius: var(--radius-round);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-base);
+  place-items: center;
+}
+
+.workshopCardLink:hover {
+  transform: translateX(4px);
+  background-color: var(--color-accent);
+}
+
+.workshopMore {
+  margin-top: var(--space-2xl);
+}
+
+/* =========================
+   06. Seasonal Pick Up
+========================= */
+.pickup {
+  background-color: var(--color-bg-accent);
+}
+
+.pickupInner {
+  display: grid;
+  align-items: center;
+  gap: clamp(4rem, 8vw, 12rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pickupText {
+  margin-top: var(--space-lg);
+  line-height: var(--lh-relaxed);
+}
+
+.pickup .textLink {
+  margin-top: var(--space-xl);
+}
+
+.pickupVisual {
+  border-radius: 48% 52% 58% 42% / 55% 45% 55% 45%;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.pickupVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   07. First Time
+========================= */
+.firstTimeHeading {
+  max-width: 64rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.firstTimeText {
+  margin-top: var(--space-lg);
+  line-height: var(--lh-relaxed);
+}
+
+.firstTimeSteps {
+  display: grid;
+  gap: var(--space-xl);
+  max-width: 96rem;
+  margin: var(--space-3xl) auto 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.firstTimeStep {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  text-align: center;
+}
+
+.firstTimeNumber {
+  font-size: var(--fs-sm);
+  font-family: var(--ff-en);
+}
+
+.firstTimeIcon {
+  display: grid;
+  width: 8rem;
+  height: 8rem;
+  margin-block: var(--space-md);
+  border: 1px solid var(--color-brand);
+  border-radius: var(--radius-round);
+  font-size: var(--fs-lg);
+  place-items: center;
+}
+
+.firstTimeStep p {
+  font-size: var(--fs-sm);
+}
+
+/* =========================
+   08. Journal
+========================= */
+.journalHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.journalList {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.journalCardImg {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.journalCardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.journalCard:hover .journalCardImg img {
+  transform: scale(1.04);
+}
+
+.journalCardMeta {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  font-size: var(--fs-xs);
+  font-family: var(--ff-en);
+  letter-spacing: 0.06em;
+}
+
+.journalCardTitle {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-md);
+  font-family: var(--ff-serif);
+  line-height: 1.5;
+}
+
+/* =========================
+   09. Access
+========================= */
+.accessInner {
+  display: grid;
+  align-items: center;
+  gap: clamp(4rem, 8vw, 12rem);
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.accessVisual {
+  border-radius: 48% 52% 44% 56% / 55% 45% 55% 45%;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.accessVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accessName {
+  margin-top: var(--space-xl);
+  font-size: var(--fs-md);
+  font-family: var(--ff-en);
+}
+
+.accessName span {
+  font-size: var(--fs-xs);
+  font-family: var(--ff-sans);
+}
+
+.accessAddress {
+  margin-top: var(--space-lg);
+  font-style: normal;
+}
+
+.accessInfo {
+  margin-top: var(--space-lg);
+}
+
+.accessInfo > div {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 8rem 1fr;
+}
+
+.accessInfo > div + div {
+  margin-top: var(--space-xs);
+}
+
+.accessInfo dt {
+  font-family: var(--ff-en);
+}
+
+.access .btn {
+  margin-top: var(--space-xl);
+}
+
+/* =========================
+   10. Footer
+========================= */
+.footer {
+  padding-block: var(--space-3xl);
+  background-color: var(--color-bg-brand);
+}
+
+.footerInner {
+  display: grid;
+  align-items: end;
+  gap: var(--space-2xl);
+  grid-template-columns: 1fr auto;
+}
+
+.footerLogoMain {
+  display: block;
+  font-size: var(--fs-xl);
+  font-family: var(--ff-en);
+  line-height: var(--lh-none);
+}
+
+.footerLogoSub {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+}
+
+.footerNav ul,
+.footerSns {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.footerNav {
+  font-size: var(--fs-sm);
+  font-family: var(--ff-en);
+}
+
+.footerSns {
+  font-size: var(--fs-xs);
+  grid-column: 2;
+}
+
+.footerCopyright {
+  font-size: var(--fs-xs);
+  font-family: var(--ff-en);
+  grid-row: 2;
+}
+
+/* =========================
+   11. Responsive
+========================= */
+@media (max-width: 767px) {
+  /* Header */
+  .headerInner {
+    min-height: 6.4rem;
+  }
+
+  .headerLogoMain {
+    font-size: 2.8rem;
+  }
+
+  .headerLogoSub {
+    font-size: 1rem;
+  }
+
+  .headerNav {
+    display: none;
+  }
+
+  .headerMenuBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .headerMenuBtn span {
+    width: 100%;
+    height: 1px;
+    background-color: currentcolor;
+    transition:
+      transform var(--transition-base),
+      opacity var(--transition-base);
+  }
+
+  .headerMenuBtn.isOpen span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .headerMenuBtn.isOpen span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .headerMenuBtn.isOpen span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto;
+    padding-top: 6.4rem;
+  }
+
+  .heroInner {
+    display: block;
+    min-height: auto;
+    padding-block: var(--space-3xl);
+  }
+
+  .heroContent {
+    position: relative;
+    z-index: 2;
+  }
+
+  .heroLead {
+    font-size: var(--fs-base);
+  }
+
+  .heroTitle {
+    font-size: clamp(5.6rem, 17vw, 7.2rem);
+  }
+
+  .heroText {
+    margin-top: var(--space-lg);
+    font-size: var(--fs-sm);
+  }
+
+  .heroVisual {
+    width: 76%;
+    margin: -2rem 0 0 auto;
+  }
+
+  /* About */
+  .aboutInner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2xl);
+  }
+
+  .aboutTitle,
+  .sectionTitle,
+  .pickupTitle,
+  .accessTitle {
+    font-size: var(--fs-lg);
+  }
+
+  .aboutVisual {
+    width: 78%;
+    margin-left: auto;
+  }
+
+  /* Workshop */
+  .workshopHeading {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .workshopCard {
+    min-height: 18rem;
+    border-radius: var(--radius-lg);
+    grid-template-columns: 42% 58%;
+  }
+
+  .workshopCardContent {
+    justify-content: flex-start;
+    padding: var(--space-lg);
+  }
+
+  .workshopCardNumber {
+    top: var(--space-md);
+    right: var(--space-md);
+    font-size: 4rem;
+  }
+
+  .workshopCardTitle {
+    gap: var(--space-2xs);
+    padding-top: 4rem;
+    padding-right: 0;
+    font-size: var(--fs-base);
+  }
+
+  .workshopCardTitle span {
+    font-size: var(--fs-xs);
+  }
+
+  .workshopCardText {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-xs);
+  }
+
+  .workshopCardMeta {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+    font-size: 1rem;
+  }
+
+  .workshopCardMeta li + li::before {
+    margin-right: var(--space-xs);
+  }
+
+  .workshopCardLink {
+    right: var(--space-md);
+    bottom: var(--space-md);
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+
+  /* Pick Up */
+  .pickupInner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2xl);
+  }
+
+  .pickupVisual {
+    width: 80%;
+    margin-left: auto;
+  }
+
+  /* First Time */
+  .firstTimeHeading {
+    text-align: left;
+  }
+
+  .firstTimeSteps {
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+    grid-template-columns: 1fr;
+  }
+
+  .firstTimeStep {
+    display: grid;
+    align-items: center;
+    gap: var(--space-md);
+    text-align: left;
+    grid-template-columns: auto 6.4rem 1fr;
+  }
+
+  .firstTimeIcon {
+    width: 6.4rem;
+    height: 6.4rem;
+    margin: 0;
+  }
+
+  /* Journal */
+  .journalHeading {
+    align-items: flex-start;
+  }
+
+  .journalHeading > .textLink {
+    flex-shrink: 0;
+  }
+
+  .journalList {
+    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+  }
+
+  .journalCardTitle {
+    font-size: var(--fs-base);
+  }
+
+  /* Access */
+  .accessInner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2xl);
+  }
+
+  .accessVisual {
+    width: 88%;
+  }
+
+  /* Footer */
+  .footerInner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xl);
+  }
+
+  .footerNav ul {
+    flex-wrap: wrap;
+  }
+
+  .footerSns {
+    display: flex;
+  }
+}
